@@ -20,7 +20,7 @@ $("#add-train-btn").on("click", function(event) {
   // Grabs user input
   var trainName = $("#train-name-input").val().trim();
   var trainDest = $("#destination-input").val().trim();
-  var trainStart = moment($("#start-input").val().trim(),"HH:MM").format("X");
+  var trainStart = moment($("#start-input").val().trim(),"HH:mm").format("X");
   var trainFreq = $("#frequency-input").val().trim();
 
   // Creates local "temporary" object for holding employee data
@@ -62,7 +62,8 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey) {
   var trainFreq = childSnapshot.val().freq;
 
   // Prettify the train start
-  var trainStartPretty = moment.unix(trainStart).format("HH:MM");
+  var trainStartPretty = moment.unix(trainStart).format("HH:mm");
+  console.log(trainStartPretty);
 
   // Add each train's data into the table
   $("#train-table > tbody").append("<tr><td>" + trainName + "</td><td>" + trainDest + "</td><td>" +
